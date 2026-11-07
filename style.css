@@ -402,3 +402,14 @@ footer b { color: var(--green); font-family: Sora, sans-serif; }
   .cursor-glow { display: none !important; }
   .btn, .box, .plan, .logo, .cta, .step::before, .nav-menu, .nav-menu a { transition: none; transform: none !important; }
 }
+
+/* Aviso de variação de domínio nos pacotes */
+.plan-note {
+  display: block;
+  margin-top: 0.875rem;
+  font-size: 0.875rem;
+  color: var(--soft);
+  opacity: 0.85;
+  text-align: center;
+  font-style: italic;
+}
