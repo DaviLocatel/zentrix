@@ -13,15 +13,23 @@
 <header>
   <div class="wrap">
     <a class="logo" href="#topo" aria-label="Zentrix, início">
-      <!-- DICA: Reduza a imagem da logo para ~80px de altura para não pesar o carregamento (menos de 15KB) -->
       <img src="logo-z.png" alt="Z" class="logo-img-z">
       <span class="logo-text">entrix</span>
     </a>
-    <nav>
+
+    <!-- Botão Hambúrguer (Aparece apenas no celular) -->
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Menu de Navegação -->
+    <nav class="nav-menu">
       <a href="#servicos">Serviços</a>
       <a href="#processo">Como funciona</a>
-      <a href="#pacotes">Pacotes</a>
       <a href="#clientes">Clientes</a>
+      <a href="#pacotes">Pacotes</a>
       <a class="btn zx-contact" href="https://wa.me/5527993122371?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Zentrix%20e%20quero%20saber%20mais." target="_blank" rel="noopener">Fale com a gente</a>
     </nav>
   </div>
@@ -57,7 +65,6 @@
   <section id="processo">
     <h2>Como funciona</h2>
     <p class="lead">Do primeiro papo até o site no ar, em três passos.</p>
-    <!-- Alterado para lista ordenada (semântica para passo a passo) -->
     <ol class="grid3 steps">
       <li class="box step">
         <h3>Conversa</h3>
@@ -77,28 +84,23 @@
   <section id="clientes">
     <h2>Nossos clientes</h2>
     <p class="lead">Projetos reais e modelos que mostram o padrão de qualidade da Zentrix.</p>
-    
     <div class="grid3">
-      <!-- Case 1: Técnico Amigo (Real) -->
       <article class="box box-client">
         <h3>Técnico Amigo</h3>
         <p>Plataforma de serviços de TI com interface limpa, moderna e focada em conversão de clientes locais.</p>
-        <!-- SUBSTITUA O LINK ABAIXO PELA URL REAL DO TÉCNICO AMIGO -->
         <a class="btn" href="https://davilocatel.github.io/sites-modelo/" target="_blank" rel="noopener">Ver cliente</a>
       </article>
 
-      <!-- Case 2: Modelo Provisório -->
       <article class="box box-client">
         <h3>Modelo: Loja Vitrine</h3>
         <p>Exemplo de catálogo digital direto ao ponto, com botões de compra integrados direto no WhatsApp.</p>
-        <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">Em breve</a>
+        <a class="btn btn-ghost" href="#contato">Em breve</a>
       </article>
 
-      <!-- Case 3: Modelo Provisório -->
       <article class="box box-client">
         <h3>Modelo: Link na Bio</h3>
         <p>Página de links profissional, leve e muito mais atraente que as ferramentas gratuitas do mercado.</p>
-        <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">Em breve</a>
+        <a class="btn btn-ghost" href="#contato">Em breve</a>
       </article>
     </div>
   </section>

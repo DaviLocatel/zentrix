@@ -36,28 +36,28 @@ a { color: inherit; }
 
 .wrap { max-width: 66.25rem; margin: 0 auto; padding: 0 1.375rem; }
 
-/* Header Mobile First: Menu visível no celular e alinhado no desktop */
+/* --- Header Mobile First --- */
 header { 
   position: sticky; 
   top: 0; 
-  z-index: 10; 
+  z-index: 999; 
   background: rgba(4,21,12,.88); 
   backdrop-filter: blur(10px); 
   border-bottom: 1px solid var(--line); 
 }
+
 header .wrap { 
   display: flex; 
   align-items: center; 
   justify-content: space-between; 
-  flex-wrap: wrap; 
-  padding: 0.875rem 1.375rem; 
-  gap: 0.75rem; 
+  height: 4.75rem;
+  padding: 0 1.375rem;
 }
 
-/* Customização e Microinteração da Logo Zentrix */
+/* --- Customização e Microinteração da Logo Zentrix --- */
 .logo { 
   display: flex; 
-  align-items: center; /* Centraliza a imagem e o texto verticalmente */
+  align-items: center; 
   text-decoration: none; 
   letter-spacing: -.02em; 
   transition: transform 0.2s ease; 
@@ -69,7 +69,7 @@ header .wrap {
   height: 2.375rem; 
   width: auto; 
   margin-right: -0.5rem; 
-  transform: translateY(0.125rem); /* Ajuste fino: aumente ou diminua se precisar */
+  transform: translateY(0.125rem); 
   display: block; 
 }
 
@@ -77,28 +77,94 @@ header .wrap {
   font: 800 1.75rem Sora, sans-serif; 
   color: #6ade2f; 
   letter-spacing: -0.02em; 
-  text-shadow: 0 0 15px rgba(106, 222, 47, 0.4);
-  transform: translateY(4px); /* Desce o texto. Aumente ou diminua os px para ajustar */
+  text-shadow: 0 0 15px rgba(106, 222, 47, 0.4); 
+  transform: translateY(4px); 
 }
 
-nav { 
-  display: flex; 
-  align-items: center; 
-  gap: 1.125rem; 
-  flex-wrap: wrap; 
-  justify-content: center; 
-  width: 100%; 
+/* --- Botão Hambúrguer (Aparece no Mobile) --- */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 2rem;
+  height: 1.4rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1001;
 }
-nav a { 
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--green);
+  border-radius: 10px;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-toggle:hover span {
+  box-shadow: 0 0 8px rgba(43, 255, 128, 0.6);
+}
+
+/* Animação para "X" quando aberto */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* --- Menu de Navegação (Mobile First: Painel Dropdown) --- */
+.nav-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(4, 21, 12, 0.96);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.375rem;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--line);
+  
+  transform: translateY(-1rem);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Microinterações dos links de texto do menu */
+.nav-menu a:not(.btn) { 
   text-decoration: none; 
   color: var(--soft); 
   font-weight: 500; 
-  transition: color 0.2s ease; 
+  font-size: 1.125rem;
+  display: inline-block;
+  transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease; 
 }
-/* Correção do menu: muda a cor apenas dos links de texto, sem afetar o botão */
-nav a:not(.btn):hover { color: var(--text); }
 
-/* Microinterações nos botões */
+.nav-menu a:not(.btn):hover { 
+  color: var(--green); 
+  transform: translateY(-2px);
+  text-shadow: 0 0 12px rgba(43, 255, 128, 0.45);
+}
+
+/* --- Microinterações nos Botões (.btn) --- */
 .btn {
   display: inline-block;
   background: var(--green);
@@ -110,7 +176,7 @@ nav a:not(.btn):hover { color: var(--text); }
   border: 0;
   cursor: pointer;
   box-shadow: 0 0 0 0 rgba(43,255,128,.5);
-  transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease;
+  transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
 }
 .btn:hover { 
   transform: translateY(-0.1875rem); 
@@ -121,9 +187,12 @@ nav a:not(.btn):hover { color: var(--text); }
   transform: translateY(0); 
   box-shadow: 0 0.25rem 0.9375rem rgba(43,255,128,.25); 
 }
-nav .btn { padding: 0.5625rem 1.125rem; font-size: 0.9375rem; }
+.nav-menu .btn { 
+  padding: 0.5625rem 1.125rem; 
+  font-size: 0.9375rem; 
+}
 
-/* Animação de entrada da Hero */
+/* --- Hero --- */
 .hero { 
   padding: 3.25rem 0 4rem; 
   max-width: 50rem; 
@@ -152,10 +221,10 @@ section { padding: 4rem 0; }
 h2 { font-size: clamp(1.75rem, 4.5vw, 2.75rem); font-weight: 800; color: var(--green); letter-spacing: -.02em; margin-bottom: 0.75rem; }
 .lead { color: var(--soft); max-width: 60ch; margin: 0 0 2rem; }
 
-/* Estrutura Mobile First (1 coluna no celular) */
+/* --- Grids Mobile First --- */
 .grid3, .plans { display: grid; grid-template-columns: 1fr; gap: 1.125rem; }
 
-/* Microinterações e Luz Neon nas Caixas (.box) */
+/* --- Microinterações e Luz Neon nas Caixas (.box) --- */
 .box {
   background: var(--card);
   border: 1px solid var(--line);
@@ -172,7 +241,34 @@ h2 { font-size: clamp(1.75rem, 4.5vw, 2.75rem); font-weight: 800; color: var(--g
 .box h3 { font-size: 1.3125rem; margin-bottom: 0.5rem; }
 .box p { margin: 0; color: var(--soft); }
 
-/* Microinterações nos passos (Como funciona) */
+/* --- Ajustes da Seção Clientes --- */
+.box-client {
+  display: flex;
+  flex-direction: column;
+}
+.box-client p {
+  margin-bottom: 1.5rem;
+}
+.box-client .btn {
+  margin-top: auto;
+  text-align: center;
+  padding: 0.75rem;
+  width: 100%;
+}
+.btn-ghost {
+  background: var(--bg2);
+  color: var(--soft);
+  box-shadow: none;
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover {
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--green);
+  box-shadow: 0 0 15px rgba(43,255,128,0.15);
+}
+
+/* --- Microinterações nos passos (Como funciona) --- */
 ol.steps { padding: 0; margin: 0; list-style: none; counter-reset: s; }
 .step { counter-increment: s; }
 .step::before {
@@ -194,7 +290,7 @@ ol.steps { padding: 0; margin: 0; list-style: none; counter-reset: s; }
   box-shadow: 0 0 1rem rgba(43, 255, 128, 0.5);
 }
 
-/* Pacotes: Ambos começam apagados e acendem em neon APENAS com o mouse em cima */
+/* --- Pacotes --- */
 .plan {
   background: var(--card);
   border: 1px solid var(--line);
@@ -212,11 +308,8 @@ ol.steps { padding: 0; margin: 0; list-style: none; counter-reset: s; }
   box-shadow: 0 0.9375rem 3.75rem rgba(43, 255, 128, 0.3);
 }
 
-/* Apenas em telas de toque puro (celular sem mouse), o pacote principal tem borda verde */
 @media (hover: none) {
-  .plan.main {
-    border-color: var(--green);
-  }
+  .plan.main { border-color: var(--green); }
 }
 
 .plan h3 { font-size: 1.5rem; }
@@ -237,7 +330,7 @@ ol.steps { padding: 0; margin: 0; list-style: none; counter-reset: s; }
 }
 .plan .btn { margin-top: auto; text-align: center; }
 
-/* Microinteração na caixa de CTA final */
+/* --- CTA Final --- */
 .cta {
   background: linear-gradient(135deg, #0f3a23, #082013);
   border: 1px solid var(--green2);
@@ -256,7 +349,7 @@ ol.steps { padding: 0; margin: 0; list-style: none; counter-reset: s; }
 footer { padding: 1.875rem 0 2.5rem; color: var(--soft); font-size: 0.9375rem; border-top: 1px solid var(--line); margin-top: 1.5rem; }
 footer b { color: var(--green); font-family: Sora, sans-serif; }
 
-/* Efeito de luz acompanhando o mouse em tempo real */
+/* --- Luz seguindo o mouse --- */
 .cursor-glow {
   position: fixed;
   top: 0;
@@ -270,53 +363,42 @@ footer b { color: var(--green); font-family: Sora, sans-serif; }
   opacity: 0;
 }
 
-/* Breakpoint Desktop (Mobile First com min-width) */
+/* --- Breakpoint Desktop (Mobile First com min-width) --- */
 @media (min-width: 820px) {
-  header .wrap { height: 4.75rem; padding: 0 1.375rem; flex-wrap: nowrap; gap: 0; }
-  nav { width: auto; justify-content: flex-end; gap: 1.375rem; }
+  .menu-toggle { 
+    display: none; 
+  }
+  
+  .nav-menu { 
+    position: static; 
+    width: auto; 
+    background: transparent; 
+    backdrop-filter: none;
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: flex-end;
+    padding: 0; 
+    border-bottom: none;
+    gap: 1.375rem;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-menu a:not(.btn) {
+    font-size: 1rem;
+  }
+
   .hero { padding-top: 5.25rem; }
   .grid3 { grid-template-columns: repeat(3, 1fr); }
   .plans { grid-template-columns: 1.15fr .85fr; gap: 1.25rem; align-items: stretch; }
 }
 
-/* Acessibilidade para quem desativa animações no sistema */
+/* --- Acessibilidade --- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero { animation: none !important; }
   .cursor-glow { display: none !important; }
-  .btn, .box, .plan, .logo, .cta, .step::before { transition: none; transform: none !important; }
-}
-
-/* --- Ajustes da Seção Clientes --- */
-
-/* Transforma o card do cliente em uma coluna flexível para empurrar o botão para baixo */
-.box-client {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Garante espaço entre o texto e o botão, e força o botão a colar na parte inferior */
-.box-client p {
-  margin-bottom: 1.5rem;
-}
-
-.box-client .btn {
-  margin-top: auto;
-  text-align: center;
-  padding: 0.75rem;
-  width: 100%;
-}
-
-/* Estilo para os botões "Em breve" dos modelos (menos chamativos que o botão verde) */
-.btn-ghost {
-  background: var(--bg2);
-  color: var(--soft);
-  box-shadow: none;
-  border: 1px solid var(--line);
-}
-.btn-ghost:hover {
-  background: var(--card);
-  color: var(--text);
-  border-color: var(--green);
-  box-shadow: 0 0 15px rgba(43,255,128,0.1);
+  .btn, .box, .plan, .logo, .cta, .step::before, .nav-menu, .nav-menu a { transition: none; transform: none !important; }
 }
